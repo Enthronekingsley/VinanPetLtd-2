@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+
+{% load crispy_forms_tags %}
+
+
+
+{% block form %}
+
+
+
+<!--    <h1>Report</h1><br>-->
+        <p>
+            {{ form | crispy }}
+
+        </p>
+
+
+    {{ form.media }}
+
+{% endblock %}

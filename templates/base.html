@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load multipage_form_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VinanPet Report</title>
+    <link rel="stylesheet" href="{% static 'vr/css/job_application.css' %}">
+    {{ form.media }}
+  </head>
+  <body>
+    {% block content %}
+    {% include 'messages.html' %}
+    {% include 'navbar.html' %}
+    <div id="main">
+      {% block intro %}
+      <div class="intro">
+        <h1 class="text-center text-success">REPORT</h1>
+        <h2 class="text-center text-success">Kindly fill out the form to submit your report.</h2><br>
+      </div>
+      {% endblock %}
+      <div class="twocol">
+        {% block leftnav %}
+        <div class="left">
+          <p><strong>COMPLETED SECTIONS</strong></p>
+          <hr>
+          {% get_history as links %}
+          {% if links %}
+          {% for link in links %}
+          <ul class="nav">
+            <li>{{ link }}</li>
+          </ul>
+          {% endfor %}
+          {% endif %}
+        </div>
+        {% endblock %}
+        <div class="right">
+          {% block preform %}
+          <div class="container w-75">
+          <div id="form_name" >
+            <h2>{{ form.display_name }}</h2>
+          </div>
+          {% endblock %}
+          <form id="vinanpet-report-form" method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+            {% block form %}
+            {% endblock %}
+            <br>
+            {% if previous %}
+            <a class="button" href="?p={{ previous }}">Previous</a>
+            {% endif %}
+            <button type="submit" class="btn btn-success">Next</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

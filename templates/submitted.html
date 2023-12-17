@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Report Submitted</title>
+  </head>
+  <body>
+
+    {% include 'navbar.html' %}<br>
+    <p>Your report has been successfully submitted.</p>
+      <p>Click <a href="{% url 'report' %}">new report</a> to submit a new report or <a href="{% url 'home' %}">home</a> to go back to the home page.</p>
+  </body>
+</html>
